@@ -1,0 +1,14 @@
+{
+  "name": "mobile-joe",
+  "version": "1.0.0",
+  "description": "Manage Mobile Joe FAQs, translations, feature plans and app settings.",
+  "author": {
+    "name": "Bytekontor GmbH",
+    "email": "hey@mobilejoe.dev"
+  },
+  "homepage": "https://docs.mobilejoe.dev/mcp/",
+  "repository": "https://github.com/MobileJoeDev/mobilejoe-plugin",
+  "license": "MIT",
+  "keywords": ["mobile", "faqs", "translations", "feature-plans", "mcp"],
+  "logo": "assets/joe.png"
+}

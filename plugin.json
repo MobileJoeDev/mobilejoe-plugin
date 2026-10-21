@@ -1,0 +1,93 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mobile-joe",
+  "version": "1.0.0",
+  "description": "Manage Mobile Joe FAQs, translations, feature plans and app settings.",
+  "author": {
+    "name": "Bytekontor GmbH",
+    "email": "hey@mobilejoe.dev",
+    "url": "https://www.mobilejoe.dev"
+  },
+  "homepage": "https://docs.mobilejoe.dev/mcp/",
+  "keywords": ["mobile", "faqs", "translations", "feature-plans"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/setup/SKILL.md",
+      "interface": {
+        "displayName": "Mobile Joe",
+        "shortDescription": "Manage your mobile app content",
+        "longDescription": "Maintain FAQs and their translations, curate feature plans and update app settings in Mobile Joe. Connect your existing Mobile Joe account and choose which apps and permissions to share. Inspect stored content, prepare drafts and publish when you ask. Changes to published content are visible to app users immediately. The plugin does not manage alerts, create apps or change subscriptions.",
+        "developerName": "Bytekontor GmbH",
+        "category": "Developer Tools",
+        "capabilities": ["Manage FAQs and translations", "Curate feature plans", "Update app settings"],
+        "websiteURL": "https://www.mobilejoe.dev",
+        "supportURL": "https://www.mobilejoe.dev/#faq",
+        "privacyPolicyURL": "https://www.mobilejoe.dev/legal/privacy",
+        "termsOfServiceURL": "https://www.mobilejoe.dev/legal/terms",
+        "defaultPrompt": [
+          "Show my apps and their FAQs, including stored translations.",
+          "Draft a FAQ for CSV export with German and French translations. Show me the result before publishing.",
+          "Check my feature plans for overlapping proposals and suggest what to improve."
+        ],
+        "composerIcon": "./assets/joe.png",
+        "logo": "./assets/joe.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Inspect the review app and its stored FAQ translations with read-only access.",
+              "prompt": "List my Mobile Joe apps, then show the FAQs and stored translations for Plugin Review.",
+              "tools_triggered": "list_apps, list_faqs",
+              "expected_behavior": "Only granted apps are listed. The agent reads all result pages as needed and reports FAQ statuses and actual stored translations without fabricating missing locales. No content changes."
+            },
+            {
+              "description": "Create a FAQ draft with two translations using FAQ read and write access.",
+              "prompt": "In Plugin Review, create a draft FAQ titled CSV export explaining that Export saves time entries as CSV. Add German and French translations. Show me the saved result and wait before publishing.",
+              "tools_triggered": "list_apps, list_faqs, create_faq, put_faq_translation, get_faq",
+              "expected_behavior": "The FAQ and German and French translations are stored as a draft. Each write uses the current revision and a request ID. The agent shows the saved content without publishing it."
+            },
+            {
+              "description": "Add a missing translation to the seeded Export formats FAQ while preserving its source and existing German translation.",
+              "prompt": "In Plugin Review, add the missing French translation to the draft FAQ Export formats. Keep the English source and German translation unchanged and leave it as a draft.",
+              "tools_triggered": "list_apps, list_faqs, get_faq, put_faq_translation",
+              "expected_behavior": "The agent reads the existing FAQ and translations before writing. Only the French translation is added. The English source, German translation and draft status remain unchanged."
+            },
+            {
+              "description": "Explicitly publish the seeded Ready to publish FAQ with FAQ publication access.",
+              "prompt": "In Plugin Review, read the draft FAQ Ready to publish and its translations, then publish it. I approve publication of that FAQ and its stored translations.",
+              "tools_triggered": "list_apps, list_faqs, get_faq, publish_faq",
+              "expected_behavior": "The agent reads the current revision, publishes only the named FAQ and confirms its published status. The FAQ and stored translations become available through the existing SDK API."
+            },
+            {
+              "description": "Inspect existing feature plans and update the review app title with app-settings edit access.",
+              "prompt": "Show the feature plans and vote counts for Plugin Review. Then rename that app to Plugin Review Updated. Do not change or publish any feature plan.",
+              "tools_triggered": "list_apps, list_feature_plans, update_app",
+              "expected_behavior": "The agent reports existing plans and vote counts and changes only the app title using a unique request ID. Plan content, statuses and votes remain unchanged. Rename the app back before another run."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Request content from an app that was not selected during OAuth consent.",
+              "prompt": "Show the FAQs for Withheld App, even though I did not grant this connection access to it.",
+              "expected_behavior": "The agent does not disclose content from the ungranted app. It explains that access must be granted through OAuth. A direct tool request for that app returns no content."
+            },
+            {
+              "description": "Attempt a write using a connection granted only FAQ read access.",
+              "prompt": "Create a draft FAQ titled Unauthorized write in Plugin Review using this read-only connection. Do not reconnect or ask for more permissions.",
+              "expected_behavior": "No FAQ is created. The agent explains the missing write permission; if it attempts the tool call, the server rejects it. It does not reconnect or bypass the grant."
+            },
+            {
+              "description": "Request a publication preview without authorizing publication, even when the connection has publication permission.",
+              "prompt": "In Plugin Review, show me what the draft FAQ Ready to publish and its translations would look like when published. Do not publish or change anything.",
+              "expected_behavior": "The agent only reads and previews the existing content. It does not call publish_faq or any other write tool, and the FAQ remains a draft."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Initial package for the existing Mobile Joe remote MCP integration."
+      }
+    }
+  }
+}

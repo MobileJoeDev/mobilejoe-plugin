@@ -1,0 +1,28 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "mobile_joe": {
+      "type": "streamable-http",
+      "url": "https://app.mobilejoe.dev/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "dcr"
+            },
+            "defaultScopes": [
+              "faqs:read",
+              "faqs:write",
+              "faqs:publish",
+              "feature_plans:read",
+              "feature_plans:write",
+              "feature_plans:publish",
+              "apps:write"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

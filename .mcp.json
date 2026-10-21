@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mobile_joe": {
+      "type": "http",
+      "url": "https://app.mobilejoe.dev/mcp"
+    }
+  }
+}

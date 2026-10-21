@@ -1,0 +1,15 @@
+{
+  "name": "mobilejoe",
+  "description": "Mobile Joe plugin for Claude Code.",
+  "owner": {
+    "name": "Bytekontor GmbH",
+    "email": "hey@mobilejoe.dev"
+  },
+  "plugins": [
+    {
+      "name": "mobile-joe",
+      "source": "./",
+      "description": "Manage Mobile Joe FAQs, translations, feature plans and app settings."
+    }
+  ]
+}
