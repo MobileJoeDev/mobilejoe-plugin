@@ -1,53 +1,60 @@
-# Mobile Joe plugin
+<h3 align="center">🦫 Mobile app toolkit for indies and small teams</h3>
 
-Manage the content of your [Mobile Joe](https://www.mobilejoe.dev) apps from your AI agent: maintain FAQs and their translations, curate feature plans and update app settings.
+<p align="center">
+  <img src="https://img.shields.io/badge/Claude-supported-blueviolet.svg" alt="Claude supported">
+  <img src="https://img.shields.io/badge/Codex%20%26%20ChatGPT-supported-blue.svg" alt="Codex and ChatGPT supported">
+  <img src="https://img.shields.io/badge/Cursor-supported-black.svg" alt="Cursor supported">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="MIT License"></a>
+</p>
 
-Connect your existing Mobile Joe account and choose which apps and permissions to share. The agent inspects stored content, prepares drafts and publishes only when you ask. Changes to published content are visible to app users immediately. The plugin does not manage alerts, create apps or change subscriptions.
+[Mobile Joe](https://mobilejoe.dev) gives indie developers and small teams native tools for their mobile apps. This plugin lets your AI agent manage their content, so you can spend more time on what makes your app unique:
 
-The plugin connects to the Mobile Joe MCP server at `https://app.mobilejoe.dev/mcp` and signs you in with OAuth. It includes a setup skill that checks the connection and helps you choose an app.
+- **Feature plans**: Turn user requests into curated plans in your own words, find overlaps, and merge duplicates.
+- **FAQs**: Draft answers, translate them into your users' languages, and publish them without an app release.
+- **App settings**: Keep your app's title, website, and deep link up to date.
+- …and more coming soon.
 
-## Install
+You choose which apps the agent can access and what it can do. It prepares drafts and publishes only when you ask.
 
-### Claude Code
+[Sign up](https://mobilejoe.dev/#pricing) to get started.
+
+## Features
+
+| Feature | What your agent can do |
+| --- | --- |
+| Feature plans with votes and statuses | Read, find overlaps, draft, merge, set statuses |
+| FAQs with translations | Read, draft, translate, reorder, publish, archive |
+| App settings | Change title, website, and deep link URL |
+
+Requires a Mobile Joe account and Claude, Claude Code, Codex, ChatGPT, or Cursor. The plugin connects to the Mobile Joe MCP server at `https://app.mobilejoe.dev/mcp` with OAuth and includes a setup skill.
+
+## Installation
+
+Install the plugin in Claude Code:
 
 ```bash
 claude plugin install mobile-joe --marketplace MobileJoeDev/mobilejoe-plugin
 ```
 
-Then run `/mcp`, select the Mobile Joe server and authenticate.
-
-### Codex
+Or in Codex:
 
 ```bash
 codex plugin marketplace add MobileJoeDev/mobilejoe-plugin
 codex plugin add mobile-joe@mobilejoe
 ```
 
-### ChatGPT and Claude
+In Claude and ChatGPT, add Mobile Joe from the app directory or add `https://app.mobilejoe.dev/mcp` as a custom connector. In Cursor, clone this repository into `~/.cursor/plugins/local/mobile-joe` and run **Developer: Reload Window**.
 
-Add Mobile Joe from the app directory, or add `https://app.mobilejoe.dev/mcp` as a custom connector.
+## Quick start
 
-### Cursor
+Connect once: In Claude Code, run `/mcp` and authenticate the Mobile Joe server. Other agents ask you to connect on first use. Sign in to Mobile Joe, select your apps, and choose an access level. Then ask your agent:
 
-Clone this repository into `~/.cursor/plugins/local/mobile-joe`, then run **Developer: Reload Window**.
+```text
+Show my apps and their FAQs, including stored translations.
+```
 
-## Try it
+New FAQs and feature plans stay drafts until you ask the agent to publish them. Changes to published content are visible to app users immediately. Review or revoke access anytime under **Account → Connections** in the dashboard.
 
-- "Show my apps and their FAQs, including stored translations."
-- "Draft a FAQ for CSV export with German and French translations. Show me the result before publishing."
-- "Check my feature plans for overlapping proposals and suggest what to improve."
+## Documentation
 
-## Documentation and support
-
-- Documentation: https://docs.mobilejoe.dev/mcp/
-- Support: hey@mobilejoe.dev
-- Privacy: https://www.mobilejoe.dev/legal/privacy
-- Terms: https://www.mobilejoe.dev/legal/terms
-
-## Feedback
-
-This repository contains the released plugin. Please send questions, bug reports and ideas to hey@mobilejoe.dev instead of opening issues or pull requests here.
-
-## License
-
-MIT
+Access levels, FAQs, feature plans, and reconnecting are covered in the [Mobile Joe documentation](https://docs.mobilejoe.dev/mcp/). Questions and feedback go to [hey@mobilejoe.dev](mailto:hey@mobilejoe.dev); this repository only contains releases. See our [privacy policy](https://www.mobilejoe.dev/legal/privacy) and [terms](https://www.mobilejoe.dev/legal/terms).
