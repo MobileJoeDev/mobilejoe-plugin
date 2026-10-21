@@ -47,7 +47,7 @@ In Claude and ChatGPT, add Mobile Joe from the app directory or add `https://app
 
 ## Quick start
 
-Connect once: In Claude Code, run `/mcp` and authenticate the Mobile Joe server. Other agents ask you to connect on first use. Sign in to Mobile Joe, select your apps, and choose an access level. Then ask your agent:
+Connect once: In Claude Code, run `/mcp` and authenticate the Mobile Joe server. In Cursor, open **Cursor Settings → Tools & MCP** and click **Authenticate** next to **mobile_joe**. Other agents ask you to connect on first use. Sign in to Mobile Joe, select your apps, and choose an access level. Then ask your agent:
 
 ```text
 Show my apps and their FAQs, including stored translations.

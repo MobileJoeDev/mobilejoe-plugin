@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mobile-joe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Manage Mobile Joe FAQs, translations, feature plans and app settings.",
   "author": {
     "name": "Bytekontor GmbH",
@@ -33,6 +33,7 @@
         "logo": "./assets/joe.png"
       },
       "review": {
+        "demo_recording_url": "https://assets.mobilejoe.dev/reviews/mobile-joe-1.0.0.mp4",
         "test_cases": {
           "positive": [
             {
